@@ -1,5 +1,6 @@
 package com.jinow.jpashop.domain.item;
 
+import com.jinow.jpashop.domain.Category;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,9 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Getter @Setter
+@Getter
+@Setter
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public abstract class Item {
     @Id
@@ -23,5 +30,6 @@ public abstract class Item {
     private int price;
     private int stockQuantity;
 
-
+    @ManyToMany(mappedBy = "items")
+    private List<Category> categories = new ArrayList<>();
 }
