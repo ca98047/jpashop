@@ -2,6 +2,7 @@ package com.jinow.jpashop.member.repository;
 
 import com.jinow.jpashop.JpashopApplication;
 import com.jinow.jpashop.domain.Member;
+import com.jinow.jpashop.repository.MemberRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -26,7 +27,7 @@ class MemberRepositoryTest {
 
         //when
         Long savedId = memberRepository.save(member);
-        Member findMember = memberRepository.find(savedId);
+        Member findMember = memberRepository.findOne(savedId);
 
         //then
         assertEquals(findMember.getId(), member.getId());
